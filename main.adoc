@@ -8,11 +8,13 @@
 
 ## Introduction
 
-Javascript started quite timidly, modest and small. It's main purpose was adding interactivity to web pages. It is worth mentioning that there were, back in the days, other technologies aiming for the same end, such as Java applets, VB script and ActiveX.
+Javascript started quite timidly, modest and small ^(1)^. It's main purpose was adding interactivity to web pages. It is worth mentioning that there were, back in the days, other technologies aiming for the same end, such as Java applets, VB script and ActiveX.
 
-In the web 1.0 era, JavaScript was relying on the engine designed by *Brendan Eich* in 1995 for the Netscape Browser, which evolved into SpiderMonkey, Firefox's JavaScript engine still used today by the latter. But there was on the other hand, another ambitious project called *V8*, released by Google in 2008 as part of the Chromium project.
+In the web 1.0 era, JavaScript was relying on the engine designed by *Brendan Eich* in 1995 for the Netscape Browser, which evolved into SpiderMonkey, Firefox's JavaScript engine still used today by the latter. But there was on the other hand, another ambitious project called *V8*, released by Google in 2008 as part of the Chromium project ^(2)^.
 
-The V8 innovation lead directly to the exaltation of JavaScript to the server side, allowing JavaScript execution outside a browser,  with fully fledged frameworks such as Express.
+The V8 innovation lead directly to the exaltation of JavaScript to the server side, allowing JavaScript execution outside a browser (There was technically an ealier attempt with the NETSCAPE’S Live Wire stack which didn't come to full fruition a decade earlier ^(3)^), with fully fledged frameworks such as Express.js and more recent Next.js.
+
+More on the history of JavaScript in the https://www.youtube.com/watch?v=qKJP93dWn40[video] by *Brendan Eich*, the designer of the language himself ^(4)^.
 
 ### History context why || State of the art
 
@@ -43,4 +45,10 @@ The V8 innovation lead directly to the exaltation of JavaScript to the server si
 
 Sources
 
-https://developer.mozilla.org/
+(1): https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
+
+(2): https://en.wikipedia.org/wiki/V8_(JavaScript_engine)
+
+(3): https://www.chicagotribune.com/1997/07/18/netscapes-live-wire/
+
+(4): https://www.youtube.com/watch?v=qKJP93dWn40
