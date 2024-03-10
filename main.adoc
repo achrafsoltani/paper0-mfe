@@ -1,9 +1,46 @@
-It has *strong* significance to me.
 
-I _cannot_ stress this enough.
 
-Type `OK` to accept.
+## The Frontend Odyssey: From unitary scripting to module federation
 
-That *_really_* has to go.
+*Author:* _Achraf soltani_
 
-Can't pick one? Let's use them `*_all_*`.
+## Abstract
+
+## Introduction
+
+Javascript started quite timidly, modest and small. It's main purpose was adding interactivity to web pages. It is worth mentioning that there were, back in the days, other technologies aiming for the same end, such as Java applets, VB script and ActiveX.
+
+In the web 1.0 era, JavaScript was relying on the engine designed by *Brendan Eich* in 1995 for the Netscape Browser, which evolved into SpiderMonkey, Firefox's JavaScript engine still used today by the latter. But there was on the other hand, another ambitious project called *V8*, released by Google in 2008 as part of the Chromium project.
+
+The V8 innovation lead directly to the exaltation of JavaScript to the server side, allowing JavaScript execution outside a browser,  with fully fledged frameworks such as Express.
+
+### History context why || State of the art
+
+### Problem motivation
+
+## How / Solution
+
+### Challenges
+
+### Architectures
+
+### Domain decomposition and DDD
+
+### deployment strategies
+
+## Organisation and governance
+
+### Preparing teams and stakeholders
+
+### Governance and security
+
+## Conclusion
+
+### Impact on user experience
+
+### Developer experience
+
+
+Sources
+
+https://developer.mozilla.org/
