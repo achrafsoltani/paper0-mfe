@@ -60,14 +60,25 @@ While a monolith in both, frontend and backend examinations, still usually works
 
 ## The Micro (r)evolution
 
-"Better late than never" strikes once more.
+"Better late than never" strikes once more. After its war for independence from the backend hegemony, and the establishment of the SPA's banana republic (a cheap ES6 "export" joke, sorry), it was time to think outside the cargo box (slightly altered in order to qualify as a Rust joke).
 
-image::images/paper0-mfe-vs-monolith.drawio.png[]
+Jokes aside, the "Need For Speed&#8482;", and efficiency, requires further separation of concerns, but this time, at a higher level than just conventional modularity and SOLID principles^(6)^.
+
+The success and the great adoption of the microservices architectural pattern heavily influenced the trends in the frontend sphere. As everything becomes "micro", the idea of micro-frontends becomes appealing, and even seductive. What if individual segments of a web application could be developed and deployed independently, without compromising the overall system's availability ? After all, a micro-frontend sounds as promising as microservices...
+
+The Web Components Consortium held a meeting, and the majority said it's word, and voted for a federal republic, and a new constitution ... (De)composition.
 
 ### Challenges
 
+
+
 Performance
+
+image::images/paper0-mfe-vs-monolith.drawio.png[]
+
 Security
+
+===> For better or worse,
 
 ### Architectures
 
@@ -99,3 +110,5 @@ Sources
 (4): https://www.youtube.com/watch?v=qKJP93dWn40
 
 (5): https://www.igi-global.com/book/handbook-research-web-second-language/517
+
+(6): https://en.wikipedia.org/wiki/SOLID
