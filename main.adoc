@@ -123,10 +123,6 @@ image::images/horizontal-team.png[]
 
 image::images/vertical-team.png[]
 
-## Organisation and governance
-
-### Governance and security
-
 ## Conclusion
 
 
