@@ -60,27 +60,62 @@ While a monolith in both, frontend and backend examinations, still usually works
 
 ## The Micro (r)evolution
 
-"Better late than never" strikes once more. After its war for independence from the backend hegemony, and the establishment of the SPA's banana republic (a cheap ES6 "export" joke, sorry), it was time to think outside the cargo box (slightly altered in order to qualify as a Rust joke).
+"Better late than never" strikes once more. After its war for independence from the backend hegemony, and the establishment of the SPA's banana republic (module exports), it was time to think outside the cargo box (slightly altered in order to qualify as a Rust joke).
 
 Jokes aside, the "Need For Speed&#8482;", and efficiency, requires further separation of concerns, but this time, at a higher level than just conventional modularity and SOLID principles^(6)^.
 
 The success and the great adoption of the microservices architectural pattern heavily influenced the trends in the frontend sphere. As everything becomes "micro", the idea of micro-frontends becomes appealing, and even seductive. What if individual segments of a web application could be developed and deployed independently, without compromising the overall system's availability ? After all, a micro-frontend sounds as promising as microservices...
 
-The Web Components Consortium held a meeting, and the majority said it's word, and voted for a federal republic, and a new constitution ... (De)composition.
+The Web Components Consortium held a meeting, and the majority said it's word, and voted for a federal republic, and a new constitution, with (De)composition as a first amendment.
 
 ### Challenges
 
-
-
 Performance
+
+So instead of building the frontend from a single codebase, and usually using a single framework, decomposing the application would in theory imply that each component is a standalone application, with its own dependencies, build cycle and deployment pipeline.
+
+In order to achieve this ordeal, a number of approaches have been designed. Amongst the different implementations, let us cite:
+
+- The old good iFrames
+- Module Federation
+- Web Components
+
+Each of the previous approaches share the same set of concerns; beyond the assembly of various HTML blocks, they all have a different answers to questions related so scripting scopes, assets, styles, routing and inter-mfe communication.
+
+While Web Components for instance, rely on the shadow DOM for style isolation, or a Webpack/React composed micro-frontend implementing a shared state using Redux, an iFrame implementation might require more hands-on techniques to allow cross-origin communications such as invoking postMethod() on the Window object ^(7)^.
+
+In contrast to microservices, we can clearly spot the increased complexity that comes pre-bundled with micro-frontends, one of them being unable to spell the word without a hyphen, the others are as follows:
+
+- The payload size
+- Governance complexity
+- Performance and security
+- Team Productivity and organization
+
+We need to put a great deal of emphasis on the productivity variable in the micro-frontend equation, since its raison d'être are flexibility, isolation of failure and shorter TTMs. The following graph illustrates the tight relationship between complexity and team productivity when using either SPAs or micro-frontends.
 
 image::images/paper0-mfe-vs-monolith.drawio.png[]
 
 Security
 
-===> For better or worse,
+For better or worse, the frontend is bound to the client's browser, runtime, and hardware. A well-designed solution thus requires prudent decision-making and careful considerations.
 
-### Architectures
+### Architectural approaches
+
+#### Patterns
+
+###### Multi-SPA
+
+image::images/multi-spa.png[]
+
+###### Micro-Apps
+
+image::images/micro-apps.png[]
+
+#### Composition: Server-Side vs Client-Side
+
+image::images/ssc.png[]
+
+image::images/csr.png[]
 
 ### Domain decomposition and DDD
 
@@ -88,15 +123,10 @@ Security
 
 ## Organisation and governance
 
-### Preparing teams and stakeholders
-
 ### Governance and security
 
 ## Conclusion
 
-### Impact on user experience
-
-### Developer experience
 
 
 Sources
@@ -112,3 +142,5 @@ Sources
 (5): https://www.igi-global.com/book/handbook-research-web-second-language/517
 
 (6): https://en.wikipedia.org/wiki/SOLID
+
+(7): https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage
