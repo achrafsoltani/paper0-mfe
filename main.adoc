@@ -105,6 +105,8 @@ For better or worse, the frontend is bound to the client's browser, runtime, and
 
 ###### Multi-SPA
 
+A simple way to approach the micro-frontend paradigm
+
 image::images/multi-spa.png[]
 
 ###### Micro-Apps
@@ -115,7 +117,11 @@ image::images/micro-apps.png[]
 
 image::images/ssc.png[]
 
+Podium
+
 image::images/csr.png[]
+
+Webpack Module Federation
 
 #### Domain decomposition and DDD
 
