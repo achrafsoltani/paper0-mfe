@@ -111,15 +111,17 @@ image::images/multi-spa.png[]
 
 image::images/micro-apps.png[]
 
-#### Composition: Server-Side vs Client-Side
+#### Deployment strategies and Composition
 
 image::images/ssc.png[]
 
 image::images/csr.png[]
 
-### Domain decomposition and DDD
+#### Domain decomposition and DDD
 
-### deployment strategies
+image::images/horizontal-team.png[]
+
+image::images/vertical-team.png[]
 
 ## Organisation and governance
 
