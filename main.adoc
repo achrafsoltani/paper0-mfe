@@ -129,13 +129,23 @@ As described previously, a key characteristic of micro-frontends is context isol
 
 #### Deployment strategies and Composition
 
-image::images/ssc.png[]
-
-Podium
+There are currently two strategies to compose micro-frontends, the first is client side composition, which (lazy)loads the components from a previously parsed App Shell:
 
 image::images/csr.png[]
 
-Webpack Module Federation
+A leading framework in client-side composition is Webpack, with the concept of Module Federation^(8)^.
+
+This approach can be qualified as truly independent and isolated, however, caution must be exercised in regard to performance, especially when using different frameworks for each fragment, as the response time and bundle size grow.
+
+The second strategy, as you might have inferred, is server-side composition, which tries to restrain the performance loss in the context of client-side composition.
+
+image::images/ssc.png[]
+
+A very promising framework for server-side composition is Podium^(8)^, which relies on express.js to serve what it describes as a Podlet. A podlet is just a metonym for fragment.
+
+The CSR strategy simply offloads the burden of composition off of the frontend's shoulders, and calls upon the services of the backend once again. By composing the application on the server, we manage to optimize the loading time on the client, but it comes at the cost of a server side architecture and infrastructure implications, such as scalability, reliability and availability.
+
+
 
 #### Domain decomposition and DDD
 
@@ -162,3 +172,5 @@ Sources
 (6): https://en.wikipedia.org/wiki/SOLID
 
 (7): https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage
+
+(8): https://webpack.js.org/concepts/module-federation/
