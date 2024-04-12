@@ -145,11 +145,20 @@ A very promising framework for server-side composition is Podium^(8)^, which rel
 
 The CSR strategy simply offloads the burden of composition off of the frontend's shoulders, and calls upon the services of the backend once again. By composing the application on the server, we manage to optimize the loading time on the client, but it comes at the cost of a server side architecture and infrastructure implications, such as scalability, reliability and availability.
 
-
-
 #### Domain decomposition and DDD
 
+[quote,Aristotle]
+Excellence is never an accident. It is always the result of high intention, sincere effort, and intelligent execution; it represents the wise choice of many alternatives - choice, not chance, determines your destiny.
+
+Indeed, since Domain-Driver Design was the philosophy that inspired the motivation behind microservices, it can accomplish the same for Micro-frontends. We can therefore think of the proper team organization to follow suit.
+
+The first team structure is horizontal, which implies that each team is responsible for single domain, as illustrated in the following diagram:
+
 image::images/horizontal-team.png[]
+
+According to this organization, each team focuses on a single domain, while intrinsically contributing to the development of shared components and libraries.
+
+The vertical team organization on the other hand, focuses the team's energy on a single component:
 
 image::images/vertical-team.png[]
 
