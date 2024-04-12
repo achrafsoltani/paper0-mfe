@@ -101,17 +101,31 @@ For better or worse, the frontend is bound to the client's browser, runtime, and
 
 ### Architectural approaches
 
-#### Patterns
+We can approach micro-frontends in diverse ways, not that there are countless ways to implement them, but prudence is of essence in regard to the technical implications. Since we are talking architecture, I believe that patterns are a good starting point:
 
-###### Multi-SPA
+###### The Multi-SPA pattern
 
-A simple way to approach the micro-frontend paradigm
+A simple way to approach the micro-frontend paradigm, is to think of them as a swarm of SPAs linking to each other, with a set of shared components and libraries. We can warp the whole system behind a reverse proxy thereafter, in order to put routing in place that simulates the behavior of a traditional monolith.
 
 image::images/multi-spa.png[]
 
-###### Micro-Apps
+In the previous diagram, two independent SPAs respond to their respective routes, while sharing for instance, a navigation component, and a UI library. This is probably the simplest approach that can be adopted by teams trying to embrace the new paradigm.
+
+The following pattern is slightly more complex, and involves as we will discover further in the article, the concept of composition.
+
+###### The Micro-Apps pattern
+
+The micro-apps pattern, as the diagram illustrates, is more "micro" than the multi-SPA pattern, in the sens that each component is a truly independent application that is developed, built and deployed separately.
 
 image::images/micro-apps.png[]
+
+In this case, a central entity described as an App Shell is loaded first, and from that point onwards, it handles loading other components, routing and lifecycle. A central security management and state management systems can be implemented within the shell.
+
+Each of the micro-apps is running on its own infrastructure, this allows on one hand, the App shell to selectively compose the interfaces in response to user interaction, and on the other, holding the promise of technology independence, failure isolation, and flexibility.
+
+This simply means that, for instance, the orders team can make modifications to their components, build and deploy it, without impacting the whole system. In other words, the application would run just fine, minus the orders components if it's being rebooted or even in teh case of failure.
+
+As described previously, a key characteristic of micro-frontends is context isolation and potentially technological freedom (which is the ability to write micro-frontends in various frameworks, in the same fashion of microservices, although the circumstances are quite constraining the case of micro-frontends, as everything runs on the same instance of an engine running inside one browser). This is where the choice of the composition strategy can be decisive.
 
 #### Deployment strategies and Composition
 
