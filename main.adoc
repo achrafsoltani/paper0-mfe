@@ -2,6 +2,8 @@
 
 ## The Frontend Odyssey: From unitary scripting to module federation
 
+image::images/mascott.jpeg[]
+
 *Author:* _Achraf soltani_
 
 ## Introduction
@@ -347,6 +349,8 @@ It goes without saying that one needs to exercise the utmost vigilance when deal
 - Performance and security challenges (XSS, CSRF)
 - Code duplication and redundancy (Multi-SPA pattern for example)
 - Cross-Team coordination
+
+image::images/conclusion.jpeg[]
 
 Sources
 
