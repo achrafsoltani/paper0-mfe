@@ -70,8 +70,6 @@ The success and the great adoption of the microservices architectural pattern he
 
 The Web Components Consortium held a meeting, and the majority said it's word, and voted for a federal republic, and a new constitution, with (De)composition as a first amendment.
 
-### Challenges
-
 So instead of building the frontend from a single codebase, and usually using a single framework, decomposing the application would in theory imply that each component is a standalone application, with its own dependencies, build cycle and deployment pipeline.
 
 In order to achieve this ordeal, a number of approaches have been designed. Amongst the different implementations, let us cite:
@@ -315,7 +313,7 @@ A very promising framework for server-side composition is Podium^(8)^, which rel
 
 The SSR strategy simply offloads the burden of composition off of the frontend's shoulders, and calls upon the services of the backend once again. By composing the application on the server, we manage to optimize the loading time on the client, but it comes at the cost of a server side architecture and infrastructure implications, such as scalability, reliability and availability.
 
-#### Domain decomposition and DDD
+#### Domain decomposition and Domain-Driven Design
 
 [quote,Aristotle]
 Excellence is never an accident. It is always the result of high intention, sincere effort, and intelligent execution; it represents the wise choice of many alternatives - choice, not chance, determines your destiny.
@@ -326,7 +324,7 @@ The first team structure is horizontal, which implies that each team is responsi
 
 image::images/horizontal-team.png[]
 
-According to this organization, each team focuses on a single domain, while intrinsically contributing to the development of shared components and libraries.
+Following this organization, each team focuses on a single domain, while intrinsically contributing to the development of shared components and libraries.
 
 The vertical team organization on the other hand, focuses the team's energy on a single component, thus enforcing domain decomposition, team and technology independence:
 
