@@ -4,8 +4,6 @@
 
 *Author:* _Achraf soltani_
 
-## Abstract
-
 ## Introduction
 
 Javascript started quite timidly, modest and small ^(1)^. It's main purpose was adding interactivity to web pages. It is worth mentioning that there were, back in the days, other technologies aiming for the same end, such as Java applets, VB script and ActiveX.
@@ -40,6 +38,8 @@ The barrier between classical heavy client applications and web applications sha
 
 The shrinking barriers between heavy clients and web apps leaves a rift that sets free the new hybrid approach, in which the interaction with the user is performed by dynamically rewriting the application state with data from the server. The new paradigm thus signs the emancipation of Single Page Applications, or SPAs as most of us know them today.
 
+image::images/spa.png[]
+
 "Better late than never" was the motto, giving rise to the frontend monolith with all of its "glory", mimicking to a great extent, the backend modular model (modules, components, services, data binding, routing, etc). A lot of frameworks then loomed out of the dark age of spaghetti scripts: AngularJS, Ember.js, Knockout.js, Meteor, ....
 
 ### Problem motivation
@@ -70,8 +70,6 @@ The Web Components Consortium held a meeting, and the majority said it's word, a
 
 ### Challenges
 
-Performance
-
 So instead of building the frontend from a single codebase, and usually using a single framework, decomposing the application would in theory imply that each component is a standalone application, with its own dependencies, build cycle and deployment pipeline.
 
 In order to achieve this ordeal, a number of approaches have been designed. Amongst the different implementations, let us cite:
@@ -94,8 +92,6 @@ In contrast to microservices, we can clearly spot the increased complexity that 
 We need to put a great deal of emphasis on the productivity variable in the micro-frontend equation, since its raison d'être are flexibility, isolation of failure and shorter TTMs. The following graph illustrates the tight relationship between complexity and team productivity when using either SPAs or micro-frontends.
 
 image::images/paper0-mfe-vs-monolith.drawio.png[]
-
-Security
 
 For better or worse, the frontend is bound to the client's browser, runtime, and hardware. A well-designed solution thus requires prudent decision-making and careful considerations.
 
@@ -143,7 +139,7 @@ image::images/ssc.png[]
 
 A very promising framework for server-side composition is Podium^(8)^, which relies on express.js to serve what it describes as a Podlet. A podlet is just a metonym for fragment.
 
-The CSR strategy simply offloads the burden of composition off of the frontend's shoulders, and calls upon the services of the backend once again. By composing the application on the server, we manage to optimize the loading time on the client, but it comes at the cost of a server side architecture and infrastructure implications, such as scalability, reliability and availability.
+The SSR strategy simply offloads the burden of composition off of the frontend's shoulders, and calls upon the services of the backend once again. By composing the application on the server, we manage to optimize the loading time on the client, but it comes at the cost of a server side architecture and infrastructure implications, such as scalability, reliability and availability.
 
 #### Domain decomposition and DDD
 
@@ -158,13 +154,27 @@ image::images/horizontal-team.png[]
 
 According to this organization, each team focuses on a single domain, while intrinsically contributing to the development of shared components and libraries.
 
-The vertical team organization on the other hand, focuses the team's energy on a single component:
+The vertical team organization on the other hand, focuses the team's energy on a single component, thus enforcing domain decomposition, team and technology independence:
 
 image::images/vertical-team.png[]
 
 ## Conclusion
 
+This section of the article is supposed to be a summary, but truth be told, there are a lot of other subjects left unspoken of, such as security concerns, governance and change management.
 
+We can however, recall the benefits of micro-frontends if the underlying philosophy is properly adopted and the technical aspects, adequately implemented :
+
+- Scalability
+- Failure isolation
+- Independent development, builds and deployments
+- Promoting DDD, automation and DevOps culture.
+
+It goes without saying that one needs to exercise the utmost vigilance when dealing with micro-frontends, and more specifically:
+
+- The complexity cost of implementing, deploying and managing micro-frontends
+- Performance and security challenges (XSS, CSRF)
+- Code duplication and redundancy (Multi-SPA pattern for example)
+- Cross-Team coordination
 
 Sources
 
