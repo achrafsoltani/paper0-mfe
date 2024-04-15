@@ -74,9 +74,181 @@ So instead of building the frontend from a single codebase, and usually using a 
 
 In order to achieve this ordeal, a number of approaches have been designed. Amongst the different implementations, let us cite:
 
-- The old good iFrames
-- Module Federation
-- Web Components
+
+
+### iFrames
+
+[source,html]
+----
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>iFrames MFE</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+<body>
+
+<iframe src="./dashboard/index.html" id="dashboard"></iframe>
+<iframe src="./orders/index.html" id="orders"></iframe>
+
+<script src="app.js"></script>
+</body>
+</html>
+----
+
+[source,javascript]
+----
+// app.js
+
+window.addEventListener(
+  "message",
+  (event) => {
+    document
+    .querySelectorAll("iframe")
+    .forEach(iframe => iframe.contentWindow.postMessage(event.data, "*"));
+  },
+  false,
+);
+----
+
+### Webpack Module Federation
+
+[source,javascript]
+----
+// app-shell/webpack.config.js
+
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const dependencies = require("./package.json").dependencies;
+
+module.exports = {
+  entry: "./src/index.js",
+  mode: "development",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "main.js",
+  },
+  devServer: {
+    port: 3004,
+    liveReload: true,
+    historyApiFallback: true,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+        },
+      },
+      {
+        test: /\.scss$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+      },
+    ],
+  },
+  name: "shell",
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+      filename: "index.html",
+    }),
+    new MiniCssExtractPlugin(),
+    new ModuleFederationPlugin({
+      name: "shell",
+      filename: "remoteEntry.js",
+      remotes: {
+          Nav: "Navigation@http://localhost:3001/remoteEntry.js", // mfe 1
+          Sidebar: "Sidebar@http://localhost:3002/remoteEntry.js", // mfe 2
+          Dashboard: "Dashboard@http://localhost:3003/remoteEntry.js" // mfe 3
+      },
+      exposes: {},
+      shared: {
+        "react": {
+          singleton: true,
+          requiredVersion: dependencies.react
+        },
+        "react-dom": {
+          singleton: true,
+          requiredVersion: dependencies["react-dom"]
+        },
+        "@mui/material": {
+          singleton: true,
+          requiredVersion: dependencies["@mui/material"]
+        },
+        "@mui/icons-material": {
+          singleton: true,
+          requiredVersion: dependencies["@mui/icons-material"]
+        },
+      }
+    })
+  ],
+};
+----
+
+### Podium
+
+[source,javascript]
+----
+// Podlet.js
+import express from 'express';
+import Podlet from '@podium/podlet';
+
+const app = express();
+
+const podlet = new Podlet({
+    name: 'myPodlet',
+    version: '1.0.0',
+    pathname: '/',
+    content: '/',
+    fallback: '/fallback',
+    development: true,
+});
+
+app.use(podlet.middleware());
+
+app.get(podlet.content(), (req, res) => {
+    res.status(200).podiumSend(`
+        <div>
+            This is the podlet's HTML content
+        </div>
+    `);
+});
+
+app.get(podlet.manifest(), (req, res) => {
+    res.status(200).send(podlet);
+});
+
+app.listen(7100);
+----
+
+[source,javascript]
+----
+// Layout.js
+import express from 'express';
+import Layout from '@podium/layout';
+
+const layout = new Layout({
+    name: 'myLayout',
+    pathname: '/',
+});
+const podlet = layout.client.register({
+    name: 'myPodlet',
+    uri: 'http://localhost:7100/manifest.json',
+});
+
+const app = express();
+app.use(layout.middleware());
+
+app.get('/', async (req, res) => {
+    const content = await podlet.fetch();
+    res.send(`
+        <html><body>${content}</body></html>
+    `);
+});
+
+app.listen(7000);
+----
 
 Each of the previous approaches share the same set of concerns; beyond the assembly of various HTML blocks, they all have a different answers to questions related so scripting scopes, assets, styles, routing and inter-mfe communication.
 
